@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LandxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fullname" Type="varchar" MaxLength="100" />
+          <Property Name="Username" Type="varchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Land">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonId" Type="int" />
+          <Property Name="TypeofOccupancy" Type="varchar" MaxLength="50" />
+          <Property Name="VendorGuarantorName" Type="varchar" MaxLength="100" />
+          <Property Name="VendorGuarantorPhone" Type="varchar" MaxLength="50" />
+          <Property Name="VendorGuarantorAddress" Type="varchar" MaxLength="300" />
+          <Property Name="Town" Type="varchar" MaxLength="50" />
+          <Property Name="LandDescription" Type="text" />
+          <Property Name="LeaseTerm" Type="varchar" MaxLength="50" />
+          <Property Name="Approved" Type="bit" />
+          <Property Name="LandDoc1" Type="varchar" MaxLength="100" />
+          <Property Name="LandDoc2" Type="varchar" MaxLength="100" />
+          <Property Name="LandDoc3" Type="varchar" MaxLength="100" />
+          <Property Name="LandDoc4" Type="varchar" MaxLength="100" />
+          <Property Name="LandDoc5" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplicantsFullname" Type="varchar" MaxLength="100" />
+          <Property Name="DoB" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="500" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Occupation" Type="varchar" MaxLength="50" />
+          <Property Name="LGA" Type="varchar" MaxLength="50" />
+          <Property Name="Nationality" Type="varchar" MaxLength="50" />
+          <Property Name="TypeofCompany" Type="varchar" MaxLength="50" />
+          <Property Name="NoKName" Type="varchar" MaxLength="100" />
+          <Property Name="NoKPhone" Type="varchar" MaxLength="50" />
+          <Property Name="Pic" Type="image" />
+        </EntityType>
+        <Association Name="FK_Land_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Land" Type="Self.Land" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Land">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LandxModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Land" EntityType="Self.Land" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Land_Person" Association="Self.FK_Land_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Land" EntitySet="Land" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LandxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fullname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Land">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonId" Type="Int32" />
+          <Property Name="TypeofOccupancy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VendorGuarantorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VendorGuarantorPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VendorGuarantorAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Town" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LandDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LeaseTerm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Approved" Type="Boolean" />
+          <Property Name="LandDoc1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LandDoc2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LandDoc3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LandDoc4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LandDoc5" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Land_Person" FromRole="Land" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicantsFullname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DoB" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Occupation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LGA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TypeofCompany" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NoKName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NoKPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pic" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Lands" Relationship="Self.FK_Land_Person" FromRole="Person" ToRole="Land" />
+        </EntityType>
+        <Association Name="FK_Land_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="Land" Type="Self.Land" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Land">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LandxEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Lands" EntityType="Self.Land" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <AssociationSet Name="FK_Land_Person" Association="Self.FK_Land_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Land" EntitySet="Lands" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LandxModelStoreContainer" CdmEntityContainer="LandxEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="LandxModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lands">
+            <EntityTypeMapping TypeName="LandxModel.Land">
+              <MappingFragment StoreEntitySet="Land">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="TypeofOccupancy" ColumnName="TypeofOccupancy" />
+                <ScalarProperty Name="VendorGuarantorName" ColumnName="VendorGuarantorName" />
+                <ScalarProperty Name="VendorGuarantorPhone" ColumnName="VendorGuarantorPhone" />
+                <ScalarProperty Name="VendorGuarantorAddress" ColumnName="VendorGuarantorAddress" />
+                <ScalarProperty Name="Town" ColumnName="Town" />
+                <ScalarProperty Name="LandDescription" ColumnName="LandDescription" />
+                <ScalarProperty Name="LeaseTerm" ColumnName="LeaseTerm" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="LandDoc1" ColumnName="LandDoc1" />
+                <ScalarProperty Name="LandDoc2" ColumnName="LandDoc2" />
+                <ScalarProperty Name="LandDoc3" ColumnName="LandDoc3" />
+                <ScalarProperty Name="LandDoc4" ColumnName="LandDoc4" />
+                <ScalarProperty Name="LandDoc5" ColumnName="LandDoc5" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="LandxModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ApplicantsFullname" ColumnName="ApplicantsFullname" />
+                <ScalarProperty Name="DoB" ColumnName="DoB" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="LGA" ColumnName="LGA" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="TypeofCompany" ColumnName="TypeofCompany" />
+                <ScalarProperty Name="NoKName" ColumnName="NoKName" />
+                <ScalarProperty Name="NoKPhone" ColumnName="NoKPhone" />
+                <ScalarProperty Name="Pic" ColumnName="Pic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
